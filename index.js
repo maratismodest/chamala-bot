@@ -16,21 +16,14 @@ bot.on('message', async (msg) => {
     const text = msg.text;
 
     if (text === '/start') {
-        await bot.sendMessage(chatId, 'Chamala - Изучение татарского языка в формате мини-игр. Выберите игру!)', {
+        await bot.sendMessage(chatId, 'Chamala - Изучение татарского языка в формате мини-игр. Нажми на большую кнопку внизу!)', {
             reply_markup: {
                 keyboard: [
-                    [{text: 'Переведи', web_app: {url: webAppUrl + '/form'}}]
+                    [{text: 'Переведи', web_app: {url: webAppUrl + '/translate'}}]
+                    // [{text: 'Переведи', web_app: {url: webAppUrl + '/form'}}]
                 ]
             }
         })
-
-        // await bot.sendMessage(chatId, 'Заходи в наш интернет магазин по кнопке ниже', {
-        //     reply_markup: {
-        //         inline_keyboard: [
-        //             [{text: 'Сделать заказ', web_app: {url: webAppUrl}}]
-        //         ]
-        //     }
-        // })
     }
 
     if (msg?.web_app_data?.data) {
@@ -49,23 +42,4 @@ bot.on('message', async (msg) => {
         }
     }
 });
-
-app.post('/web-data', async (req, res) => {
-    const {queryId, products = [], totalPrice} = req.body;
-    try {
-        await bot.answerWebAppQuery(queryId, {
-            type: 'article',
-            id: queryId,
-            title: 'Успешная покупка',
-            input_message_content: {
-                message_text: ` Поздравляю с покупкой, вы приобрели товар на сумму ${totalPrice}, ${products.map(item => item.title).join(', ')}`
-            }
-        })
-        return res.status(200).json({});
-    } catch (e) {
-        return res.status(500).json({})
-    }
-})
-
-const PORT = 8000;
 
