@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 
 const token = '1946655280:AAFLTPYV0l7YSgdNAb25_FbJ4x3jRmzx-xY';
-const webAppUrl = 'http://localhost:3000';
+const webAppUrl = 'https://chamala.netlify.app';
 
 const bot = new TelegramBot(token, {polling: true});
 const app = express();
@@ -16,21 +16,21 @@ bot.on('message', async (msg) => {
     const text = msg.text;
 
     if (text === '/start') {
-        await bot.sendMessage(chatId, 'Ниже появится кнопка, заполни форму', {
+        await bot.sendMessage(chatId, 'Chamala - Изучение татарского языка в формате мини-игр. Выберите игру!)', {
             reply_markup: {
                 keyboard: [
-                    [{text: 'Заполнить форму', web_app: {url: webAppUrl + '/form'}}]
+                    [{text: 'Переведи', web_app: {url: webAppUrl + '/form'}}]
                 ]
             }
         })
 
-        await bot.sendMessage(chatId, 'Заходи в наш интернет магазин по кнопке ниже', {
-            reply_markup: {
-                inline_keyboard: [
-                    [{text: 'Сделать заказ', web_app: {url: webAppUrl}}]
-                ]
-            }
-        })
+        // await bot.sendMessage(chatId, 'Заходи в наш интернет магазин по кнопке ниже', {
+        //     reply_markup: {
+        //         inline_keyboard: [
+        //             [{text: 'Сделать заказ', web_app: {url: webAppUrl}}]
+        //         ]
+        //     }
+        // })
     }
 
     if (msg?.web_app_data?.data) {
