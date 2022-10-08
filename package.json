@@ -22,7 +22,10 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "^4.18.1",
-    "node-telegram-bot-api": "^0.59.0"
+    "node-telegram-bot-api": "^0.59.0",
+    "sequelize": "^6.24.0",
+    "pg": "^8.8.0"
   }
 }

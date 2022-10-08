@@ -1,6 +1,9 @@
+require("dotenv").config();
+const sequelize = require("./db");
 const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
 const cors = require('cors');
+const {Tg} = require("./models");
 
 const token = '1946655280:AAFLTPYV0l7YSgdNAb25_FbJ4x3jRmzx-xY';
 const webAppUrl = 'https://chamala.netlify.app';
@@ -11,9 +14,35 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+const PORT = 1234
+
+const start = async () => {
+    try {
+        await sequelize.authenticate();
+        await sequelize.sync();
+        app.listen(PORT, () => {
+            console.log(`Example app listening on port ${PORT}`)
+        })
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+start();
+
 bot.on('message', async (msg) => {
     const chatId = msg.chat.id;
     const text = msg.text;
+
+    const tg = await Tg.findOrCreate({
+        where: {
+            chatId
+        },
+        defaults: {
+            chatId
+        }
+    })
+
 
     if (text === '/start') {
         await bot.sendMessage(chatId, 'Chamala - Изучение татарского языка в формате мини-игр. Нажми на большую кнопку внизу!)', {
