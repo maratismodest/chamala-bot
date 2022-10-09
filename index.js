@@ -48,7 +48,11 @@ bot.on('message', async (msg) => {
         await bot.sendMessage(chatId, 'Chamala - Изучение татарского языка в формате мини-игр. Нажми на большую кнопку внизу!)', {
             reply_markup: {
                 keyboard: [
-                    [{text: 'Переведи', web_app: {url: webAppUrl + '/translate'}}]
+                    [
+                        {text: 'Переведи', web_app: {url: webAppUrl + '/translate'}},
+                        {text: 'Алиас', web_app: {url: webAppUrl + '/alias'}}
+                    ]
+                    // [{text: 'Переведи', web_app: {url: webAppUrl + '/translate'}}]
                     // [{text: 'Переведи', web_app: {url: webAppUrl + '/form'}}]
                 ]
             }
