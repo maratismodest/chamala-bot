@@ -6,7 +6,7 @@ const cors = require('cors');
 const {Tg} = require("./models");
 
 const token = '1946655280:AAFLTPYV0l7YSgdNAb25_FbJ4x3jRmzx-xY';
-const webAppUrl = 'https://chamala.netlify.app';
+const webAppUrl = 'https://chamala.ru';
 
 const bot = new TelegramBot(token, {polling: true});
 const app = express();
@@ -49,7 +49,7 @@ bot.on('message', async (msg) => {
             reply_markup: {
                 keyboard: [
                     [
-                        {text: 'Переведи', web_app: {url: webAppUrl + '/translate'}},
+                        {text: 'Переведи', web_app: {url: webAppUrl + '/guess'}},
                         {text: 'Алиас', web_app: {url: webAppUrl + '/alias'}}
                     ]
                     // [{text: 'Переведи', web_app: {url: webAppUrl + '/translate'}}]
