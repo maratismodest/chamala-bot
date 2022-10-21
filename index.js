@@ -51,6 +51,9 @@ bot.on('message', async (msg) => {
                     [
                         {text: 'Переведи', web_app: {url: webAppUrl + '/guess'}},
                         {text: 'Алиас', web_app: {url: webAppUrl + '/alias'}}
+                    ],
+                    [
+                        {text: 'Собери', web_app: {url: webAppUrl + '/collect'}},
                     ]
                     // [{text: 'Переведи', web_app: {url: webAppUrl + '/translate'}}]
                     // [{text: 'Переведи', web_app: {url: webAppUrl + '/form'}}]
